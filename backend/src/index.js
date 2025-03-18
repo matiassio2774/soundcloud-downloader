@@ -7,7 +7,15 @@ const app = express();
 const PORT = process.env.BACKEND_PORT || 5000;
 
 // Middleware
-app.use(cors());
+// Configuración de CORS
+const corsOptions = {
+  origin: 'https://frontend-soundcloud-downloader.onrender.com', // URL de tu frontend en Render
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Rutas
