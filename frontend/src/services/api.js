@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Configurar la URL base según el entorno
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || 'https://backend-soundcloud-downloader.onrender.com/api';
 
 const apiClient = axios.create({
   baseURL: API_URL,

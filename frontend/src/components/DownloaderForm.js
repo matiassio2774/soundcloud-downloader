@@ -90,7 +90,7 @@ function DownloaderForm() {
       // Usar la URL directa de la API
       if (track.directDownloadUrl) {
         console.log('Usando URL directa de la API:', track.directDownloadUrl);
-        const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+        const apiBaseUrl = process.env.REACT_APP_API_URL || 'https://backend-soundcloud-downloader.onrender.com';
         const fullUrl = `${apiBaseUrl}${track.directDownloadUrl}`;
         
         console.log('URL completa para descarga:', fullUrl);
