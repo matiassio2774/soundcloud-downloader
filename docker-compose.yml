@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Servicio Backend
+  backend:
+    build: ./backend
+    container_name: soundcloud-downloader-backend
+    restart: always
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${BACKEND_PORT}
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - app-network
+
+  # Servicio Frontend
+  frontend:
+    build: ./frontend
+    container_name: soundcloud-downloader-frontend
+    restart: always
+    ports:
+      - "${FRONTEND_PORT}:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:${BACKEND_PORT}/api
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge 
